@@ -1,0 +1,36 @@
+#rules-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    box-sizing: border-box;
+    width: 900px;
+    margin: 20px auto;
+    padding: 10px 30px;
+    border-top-right-radius: 20px;
+    box-shadow: lightgray 4px 4px 20px;
+    background-color: whitesmoke;
+}
+
+h2 {
+    color: goldenrod;
+}
+
+h3 {
+    margin-top: 30px;
+    color: #666;
+}
+
+ul li {
+    list-style-type: none;
+    margin: 3px 0;
+}
+
+#red-indicator {
+    color: rgb(200, 0, 0);
+}
+
+#yellow-indicator {
+    color: rgb(150, 150, 0);
+}
