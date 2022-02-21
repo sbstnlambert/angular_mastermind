@@ -7,6 +7,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RulesComponent } from './rules/rules.component';
 import { HeaderComponent } from './header/header.component';
 import { MastermindPageComponent } from './mastermind-page/mastermind-page.component';
+import { SecretCodeComponent } from './secret-code/secret-code.component';
+import { ColorPaletteComponent } from './color-palette/color-palette.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { MastermindPageComponent } from './mastermind-page/mastermind-page.compo
     LandingPageComponent,
     RulesComponent,
     HeaderComponent,
-    MastermindPageComponent
+    MastermindPageComponent,
+    SecretCodeComponent,
+    ColorPaletteComponent
   ],
   imports: [
     BrowserModule,
