@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class SecretCodeComponent implements OnInit {
 
   secretCodes: string[] = [
-    'blue',
-    'red',
-    'yellow',
-    'green'
+    'rgb(29, 29, 204)',
+    'rgb(187, 36, 36)',
+    'rgb(211, 211, 39)',
+    'rgb(21, 109, 21)'
   ];
 
   constructor() { }
