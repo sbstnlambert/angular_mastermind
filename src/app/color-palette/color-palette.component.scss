@@ -1,13 +1,13 @@
-#palette-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 80px;
-    border-top-left-radius: 20px;
-    border-end-end-radius: 20px;
-    background-color: white;
-}
+// #palette-container {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+//     width: 80px;
+//     border-top-left-radius: 20px;
+//     border-end-end-radius: 20px;
+//     background-color: white;
+// }
 
 .color-item {
     width: 50px;
@@ -43,11 +43,3 @@
 #orange {
     background-color: rgb(240, 159, 10);
 }
-
-// #validate {
-//     background-color: black;
-//     img {
-//         display: block;
-//         margin: auto;
-//     }
-// }

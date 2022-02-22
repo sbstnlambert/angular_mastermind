@@ -3,5 +3,29 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 900px;
+    width: 600px;
+}
+
+color-palette {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80px;
+    border-top-left-radius: 20px;
+    border-end-end-radius: 20px;
+    background-color: white;
+}
+
+secret-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-left: 25%;
+    width: 300px;
+    border-top-left-radius: 20px;
+    border-end-end-radius: 20px;
+    background-color: white;
 }
