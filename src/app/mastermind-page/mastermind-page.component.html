@@ -1,4 +1,12 @@
-<div id="mastermind-container">
+<div id="page-container">
+    <div id="board-game-container">
+        <ng-container *ngFor="let _ of [].constructor(boardUnitNumber); let i = index">
+        <div id="board-unit">
+            <p class="board-unit-number">{{ i+1 }}</p>
+            <div class="code-peg-item" *ngFor="let emptyUnitPeg of emptyUnitPegs"></div>
+        </div>
+        </ng-container>
+    </div>
     <color-palette></color-palette>
     <secret-code></secret-code>
 </div>

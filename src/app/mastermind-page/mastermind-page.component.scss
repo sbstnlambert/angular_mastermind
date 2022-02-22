@@ -1,9 +1,45 @@
-#mastermind-container  {
+#page-container  {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     width: 600px;
+}
+
+#board-game-container {
+    position: absolute;
+    width: 500px;
+    height: 600px;
+    top: 0;
+    right: 0;
+    // border: 2px black solid;
+}
+
+#board-unit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 500px;
+    height: 60px;
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-end-start-radius: 20px;
+}
+
+.board-unit-number {
+    // border: 1px blue solid;
+    padding-right: 10%;
+    font-size: 2em;
+    color: #999;
+}
+
+.code-peg-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 10px;
+    background-color: rgb(230, 230, 230);
 }
 
 color-palette {

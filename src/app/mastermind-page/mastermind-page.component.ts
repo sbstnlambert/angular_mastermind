@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MastermindPageComponent implements OnInit {
 
+  emptyUnitPegs: string[] = [
+    'rgb(230, 230, 230)',
+    'rgb(230, 230, 230)',
+    'rgb(230, 230, 230)',
+    'rgb(230, 230, 230)'
+  ];
+
+  boardUnitNumber: number = 10;
+
   constructor() { }
 
   ngOnInit(): void {
