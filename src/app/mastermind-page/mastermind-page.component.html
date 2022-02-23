@@ -2,11 +2,17 @@
     <div id="board-game-container">
         <ng-container *ngFor="let _ of [].constructor(boardUnitNumber); let i = index">
         <div id="board-unit">
-            <p class="board-unit-number">{{ i+1 }}</p>
-            <div class="code-peg-item" *ngFor="let emptyUnitPeg of emptyUnitPegs"></div>
+            <span class="board-unit-number">{{ i+1 }}</span>
+            <div class="code-peg-item"
+            [ngStyle]="{'background-color': emptyUnitPeg}"
+            *ngFor="let emptyUnitPeg of emptyUnitPegs" 
+            ></div>
         </div>
         </ng-container>
-    </div>
-    <color-palette></color-palette>
+    </div> <!-- End board-game-container -->
+
+    <color-palette
+    (user-choice)="applyUserChoice($event)"></color-palette>
     <secret-code></secret-code>
-</div>
+    
+</div> <!-- End page-container -->

@@ -14,11 +14,16 @@ export class MastermindPageComponent implements OnInit {
     'rgb(230, 230, 230)'
   ];
 
-  boardUnitNumber: number = 10;
+  boardUnitNumber: number = 8;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  applyUserChoice(event: string) {
+    let index = this.emptyUnitPegs.findIndex(element => element == 'rgb(230, 230, 230)');
+    this.emptyUnitPegs[index] = event;
   }
 
 }
