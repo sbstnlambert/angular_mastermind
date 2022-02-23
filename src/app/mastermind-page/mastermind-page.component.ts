@@ -15,6 +15,7 @@ export class MastermindPageComponent implements OnInit {
   ];
 
   tab: string[][] = [];
+  userSuggestion: string[] = this.tab[0];
 
   boardUnitNumber: number = 8;
 

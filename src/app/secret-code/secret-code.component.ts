@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'secret-code',
@@ -13,6 +13,9 @@ export class SecretCodeComponent implements OnInit {
     'rgb(211, 211, 39)',
     'rgb(21, 109, 21)'
   ];
+
+  @Input('user-suggestion')
+  userSuggestion!: string[];
 
   constructor() { }
 

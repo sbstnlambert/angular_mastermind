@@ -11,8 +11,8 @@
             <!-- Generate four empty pegs in every row -->
             <div class="code-peg-item"
                 *ngFor="let emptyUnitPeg of row" 
-                [ngStyle]="{ 'background-color': emptyUnitPeg }"
-            ></div>
+                [ngStyle]="{ 'background-color': emptyUnitPeg }">
+            </div>
 
         </div> <!-- End board-unit -->
 
@@ -22,6 +22,7 @@
                     (validate)="validate()">
     </color-palette>
 
-    <secret-code></secret-code>
+    <secret-code [user-suggestion] = userSuggestion>
+    </secret-code>
     
 </div> <!-- End page-container -->
