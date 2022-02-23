@@ -18,7 +18,10 @@ export class ColorPaletteComponent implements OnInit {
   ];
 
   @Output('user-choice')
-  emitter = new EventEmitter<string>();
+  emitterChoice = new EventEmitter<string>();
+
+  @Output('validate')
+  emitterValidate = new EventEmitter();
 
   constructor() { }
 
@@ -26,6 +29,11 @@ export class ColorPaletteComponent implements OnInit {
   }
 
   getUserChoice(color: string) {
-    this.emitter.emit(color);
+    this.emitterChoice.emit(color);
   }
+
+  onValidate() {
+    this.emitterValidate.emit();
+  }
+
 }

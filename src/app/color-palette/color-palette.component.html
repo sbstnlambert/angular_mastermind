@@ -2,15 +2,11 @@
     <div class="color-item"
         *ngFor="let color of colors; let i = index;"
         [ngStyle]="{ 'backgroundColor': color }" 
-        (click)="getUserChoice(color)"></div>
-    <!-- <div class="color-item" id="red"></div>
-    <div class="color-item" id="green"></div>
-    <div class="color-item" id="blue"></div>
-    <div class="color-item" id="yellow"></div>
-    <div class="color-item" id="purple"></div>
-    <div class="color-item" id="brown"></div>
-    <div class="color-item" id="orange"></div> -->
-    <div class="color-item" id="validate">
+        (click)="getUserChoice(color)">
+    </div>
+
+    <div class="color-item" id="validate" (click)="onValidate()">
         <img src="../../assets/img/validate-arrow.png" alt="Arrow to validate Mastermind combination">
     </div>
+
 <!-- </div> -->
