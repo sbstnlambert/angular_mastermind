@@ -43,6 +43,11 @@
     margin: 10px;
 }
 
+.rows-container {
+    display: flex;
+    gap: 2px;
+}
+
 .red {
     background-color: rgb(187, 36, 36);
 }

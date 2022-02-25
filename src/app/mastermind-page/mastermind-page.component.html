@@ -3,26 +3,38 @@
 
         <!-- Generate a number of rows defined in boardUnitNumber -->
         <div class="board-unit"
-            *ngFor="let row of tab; let i = index;">
+            *ngFor="let row of boardgame; let i = index;">
 
             <!-- Generate and display row's number -->
             <span class="board-unit-number">{{ i+1 }}</span>
 
             <!-- Generate four empty pegs in every row -->
-            <div class="code-peg-item"
-                *ngFor="let emptyUnitPeg of row" 
-                [ngStyle]="{ 'background-color': emptyUnitPeg }">
-            </div>
+            <div class="rows-container">
+
+                <div    class="row"
+                        *ngFor="let emptyUnitPeg of row"
+                        [ngStyle]="{ 'background-color': emptyUnitPeg.hint }">
+
+                    <div class="code-peg-item"
+                        [ngStyle]="{ 'background-color': emptyUnitPeg.color }">
+                    </div>
+
+                </div> <!-- End rows -->
+
+            </div> <!-- End rows-container -->
+            
 
         </div> <!-- End board-unit -->
 
     </div> <!-- End board-game-container -->
 
-    <color-palette (user-choice)="applyUserChoice($event)"
-                    (validate)="validate()">
+    <color-palette  (user-choice)="applyUserChoice($event)"
+                    (user-suggestion)="onValidate($event)"
+                    >
     </color-palette>
 
-    <secret-code [user-suggestion] = userSuggestion>
+    <secret-code    [current-suggestion]="currentSuggestion"
+                    (hints)="displayHints($event)">
     </secret-code>
     
 </div> <!-- End page-container -->

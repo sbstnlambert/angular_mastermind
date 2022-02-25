@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'color-palette',
@@ -20,8 +20,10 @@ export class ColorPaletteComponent implements OnInit {
   @Output('user-choice')
   emitterChoice = new EventEmitter<string>();
 
-  @Output('validate')
-  emitterValidate = new EventEmitter();
+  @Output('user-suggestion')
+  emitterUserSuggestion = new EventEmitter<{ color: string, hint: string }[]>();
+
+  userSuggestion: { color: string, hint: string }[] = [];
 
   constructor() { }
 
@@ -32,8 +34,13 @@ export class ColorPaletteComponent implements OnInit {
     this.emitterChoice.emit(color);
   }
 
+  saveUserChoice(color: string) {
+    this.userSuggestion.push({ color: color, hint: 'white' });
+  }
+
   onValidate() {
-    this.emitterValidate.emit();
+    this.emitterUserSuggestion.emit(this.userSuggestion);
+    this.userSuggestion = [];
   }
 
 }
