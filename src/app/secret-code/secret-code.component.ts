@@ -8,9 +8,9 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 export class SecretCodeComponent implements OnInit, OnChanges {
 
   secretCodes: string[] = [
-    'rgb(29, 29, 204)',
+    'rgb(21, 109, 21)',
     'rgb(187, 36, 36)',
-    'rgb(211, 211, 39)',
+    'rgb(29, 29, 204)',
     'rgb(21, 109, 21)'
   ];
 
@@ -39,7 +39,51 @@ export class SecretCodeComponent implements OnInit, OnChanges {
   }
 
   checkUserSuggestion() {
-    let count: number = 0;
+    let noneMatchCount: number = 0;
+    // let redSecretColorCount = 0;
+    // let greenSecretColorCount = 0;
+    // let blueSecretColorCount = 0;
+    // let yellowSecretColorCount = 0;
+    // let purpleSecretColorCount = 0;
+    // let brownSecretColorCount = 0;
+    // let orangeSecretColorCount = 0;
+
+    // for (let c = 0; c < this.secretCodes.length; c++) {
+    //   switch (this.secretCodes[c]) {
+    //     case 'rgb(187, 36, 36)':
+    //       redSecretColorCount++;
+    //       break;
+    //     case 'rgb(21, 109, 21)':
+    //       greenSecretColorCount++;
+    //       break;
+    //     case 'rgb(29, 29, 204)':
+    //       blueSecretColorCount++;
+    //       break;
+    //     case 'rgb(211, 211, 39)':
+    //       yellowSecretColorCount++;
+    //       break;
+    //     case 'rgb(173, 42, 173)':
+    //       purpleSecretColorCount++;
+    //       break;
+    //     case 'rgb(119, 30, 30)':
+    //       brownSecretColorCount++;
+    //       break;
+    //     case 'rgb(240, 159, 10)':
+    //       orangeSecretColorCount++;
+    //       break;
+    //       default:
+    //         break;
+    //   }
+    // }
+    // console.log('Red color found: ' + redSecretColorCount);
+    // console.log('Green color found: ' + greenSecretColorCount);
+    // console.log('Blue color found: ' + blueSecretColorCount);
+    // console.log('Yellow color found: ' + yellowSecretColorCount);
+    // console.log('Purple color found: ' + purpleSecretColorCount);
+    // console.log('Brown color found: ' + brownSecretColorCount);
+    // console.log('Orange color found: ' + orangeSecretColorCount);
+    let currentColorCount: number = 0;
+    
     for (let s = 0; s < this.currentSuggestion.length; s++) {
       for (let c = 0; c < this.secretCodes.length; c++) {
         if (s == c && this.currentSuggestion[s].color == this.secretCodes[c]) {
@@ -47,16 +91,17 @@ export class SecretCodeComponent implements OnInit, OnChanges {
           this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightgreen' });
           break;
         } else if (this.currentSuggestion[s].color == this.secretCodes[c]) {
-          // Yellow hint
-          this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'orange' });
+          // Orange hint
+          this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'rgb(255, 192, 74)' });
           break;
         }
-        count ++;
+        noneMatchCount++;
       }
-      if (count === this.currentSuggestion.length) {
+      if (noneMatchCount === this.currentSuggestion.length) {
+        // Red hint
         this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightcoral'});
       }
-      count = 0;
+      noneMatchCount = 0;
     }
   }
 
