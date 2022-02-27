@@ -39,8 +39,68 @@ export class SecretCodeComponent implements OnInit, OnChanges {
   }
 
   checkUserSuggestion() {
-    let noneMatchCount: number = 0;
-    // let redSecretColorCount = 0;
+    
+    let colorIsNotMatching: boolean = true;
+    let isNotGreen: boolean = true;
+
+    for (let s = 0; s < this.currentSuggestion.length; s++) {
+      colorIsNotMatching = true;
+      isNotGreen = true;
+      console.log('Suggestion Round: ' + s)
+      for (let c = 0; c < this.secretCodes.length; c++) {
+        console.log('Secret Round: ' + c)
+        if (isNotGreen || colorIsNotMatching) {
+          if (s == c && this.currentSuggestion[s].color == this.secretCodes[c] ) {
+            // Green hint
+            colorIsNotMatching = false;
+            isNotGreen = false;
+            this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightgreen' });
+            console.log('Color not match[' + s + '-' + c + ']: ' + colorIsNotMatching);
+            console.log('Is not green[' + s + '-' + c + ']: ' + isNotGreen);
+          }
+          if (this.currentSuggestion[s].color == this.secretCodes[c] && colorIsNotMatching && isNotGreen) {
+            // Orange hint
+            colorIsNotMatching = false;
+            isNotGreen = true;
+            this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'orange' });
+          }
+          if (colorIsNotMatching && isNotGreen && c == this.secretCodes.length-1) {
+            // Red hint
+            colorIsNotMatching = true;
+            isNotGreen = true;
+            this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightcoral'});
+          }
+        }
+      }
+    }
+  }
+
+  // let noneMatchCount: number = 0;
+    // let colorHasBeenFound: boolean = false;
+
+    // for (let s = 0; s < this.currentSuggestion.length; s++) {
+    //   colorHasBeenFound = false;
+    //   for (let c = 0; c < this.secretCodes.length; c++) {
+    //     if (s == c && this.currentSuggestion[s].color == this.secretCodes[c] && !colorHasBeenFound) {
+    //       // Green hint
+    //       this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightgreen' });
+    //       colorHasBeenFound = true;
+    //       break;
+    //     } else if (this.currentSuggestion[s].color == this.secretCodes[c] && !colorHasBeenFound) {
+    //       // Orange hint
+    //       this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'rgb(255, 192, 74)' });
+    //       break;
+    //     }
+    //     noneMatchCount++;
+    //   }
+    //   if (noneMatchCount === this.currentSuggestion.length) {
+    //     // Red hint
+    //     this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightcoral'});
+    //   }
+    //   noneMatchCount = 0;
+    // }
+
+  // let redSecretColorCount = 0;
     // let greenSecretColorCount = 0;
     // let blueSecretColorCount = 0;
     // let yellowSecretColorCount = 0;
@@ -82,27 +142,5 @@ export class SecretCodeComponent implements OnInit, OnChanges {
     // console.log('Purple color found: ' + purpleSecretColorCount);
     // console.log('Brown color found: ' + brownSecretColorCount);
     // console.log('Orange color found: ' + orangeSecretColorCount);
-    let currentColorCount: number = 0;
-    
-    for (let s = 0; s < this.currentSuggestion.length; s++) {
-      for (let c = 0; c < this.secretCodes.length; c++) {
-        if (s == c && this.currentSuggestion[s].color == this.secretCodes[c]) {
-          // Green hint
-          this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightgreen' });
-          break;
-        } else if (this.currentSuggestion[s].color == this.secretCodes[c]) {
-          // Orange hint
-          this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'rgb(255, 192, 74)' });
-          break;
-        }
-        noneMatchCount++;
-      }
-      if (noneMatchCount === this.currentSuggestion.length) {
-        // Red hint
-        this.checkedSuggestion.push({ color: this.currentSuggestion[s].color, hint: 'lightcoral'});
-      }
-      noneMatchCount = 0;
-    }
-  }
 
 }
