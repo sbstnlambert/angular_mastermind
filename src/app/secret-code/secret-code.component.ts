@@ -7,11 +7,16 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 })
 export class SecretCodeComponent implements OnInit, OnChanges {
 
-  secretCodes: string[] = [
-    'rgb(21, 109, 21)',
+  secretCodes!: string[];
+
+  colors: string[] = [
     'rgb(187, 36, 36)',
+    'rgb(21, 109, 21)',
     'rgb(29, 29, 204)',
-    'rgb(21, 109, 21)'
+    'rgb(211, 211, 39)',
+    'rgb(173, 42, 173)',
+    'rgb(119, 30, 30)',
+    'rgb(240, 159, 10)'
   ];
 
   checkedSuggestion: { color: string, hint: string }[] = [];
@@ -25,6 +30,11 @@ export class SecretCodeComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit(): void {
+    this.secretCodes = [];
+
+    for (let i = 0; i < 4; i++) {
+      this.secretCodes.push(this.colors[Math.floor(Math.random()*7)]);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
