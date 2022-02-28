@@ -30,7 +30,8 @@
 
     <color-palette  (user-choice)="applyUserChoice($event)"
                     (user-suggestion)="onValidate($event)" 
-                    (reset)="onReset()"                    
+                    (reset)="onReset()" 
+                    *ngIf="win === undefined"               
                     >
     </color-palette>
 

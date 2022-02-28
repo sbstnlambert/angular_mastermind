@@ -8,12 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MastermindPageComponent implements OnInit {
 
   boardgame: { color: string, hint: string }[][] = [];
-
-  boardUnitNumber: number = 8;
-
+  boardUnitNumber: number = 1;
   rowIndex: number = 0;
-
   currentSuggestion!: { color: string, hint: string }[];
+  win: boolean | undefined = undefined;
 
   constructor() { }
 
@@ -53,10 +51,21 @@ export class MastermindPageComponent implements OnInit {
   }
 
   displayHints(event: { color: string, hint: string }[]) {
+    let count: number = 0;
     for (let i = 0; i < event.length; i++) {
       this.boardgame[this.rowIndex-1][i].color = event[i].color;
       this.boardgame[this.rowIndex-1][i].hint = event[i].hint;
+      if (event[i].hint === 'lightgreen')
+        count++;
     }
+    if (count === 4) {
+      this.win = true;
+      alert('Congrats! You win.');
+    } else if (this.rowIndex === this.boardUnitNumber) {
+      this.win = false;
+      alert('You failed to break the code.');
+    }
+
   }
 
 }
