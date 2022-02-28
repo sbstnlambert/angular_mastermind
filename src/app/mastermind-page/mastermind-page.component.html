@@ -29,7 +29,8 @@
     </div> <!-- End board-game-container -->
 
     <color-palette  (user-choice)="applyUserChoice($event)"
-                    (user-suggestion)="onValidate($event)"
+                    (user-suggestion)="onValidate($event)" 
+                    (reset)="onReset()"                    
                     >
     </color-palette>
 

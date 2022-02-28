@@ -45,6 +45,13 @@ export class MastermindPageComponent implements OnInit {
     }
   }
 
+  // Reset user's suggestion row
+  onReset() {
+    for (let cell of this.boardgame[this.rowIndex]) {
+      cell.color = 'rgb(230, 230, 230)';
+    }
+  }
+
   displayHints(event: { color: string, hint: string }[]) {
     for (let i = 0; i < event.length; i++) {
       this.boardgame[this.rowIndex-1][i].color = event[i].color;

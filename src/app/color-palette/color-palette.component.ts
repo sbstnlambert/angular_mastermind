@@ -23,6 +23,9 @@ export class ColorPaletteComponent implements OnInit {
   @Output('user-suggestion')
   emitterUserSuggestion = new EventEmitter<{ color: string, hint: string }[]>();
 
+  @Output('reset')
+  emitterReset = new EventEmitter();
+
   userSuggestion: { color: string, hint: string }[] = [];
 
   constructor() { }
@@ -40,6 +43,11 @@ export class ColorPaletteComponent implements OnInit {
 
   onValidate() {
     this.emitterUserSuggestion.emit(this.userSuggestion);
+    this.userSuggestion = [];
+  }
+
+  onReset() {
+    this.emitterReset.emit();
     this.userSuggestion = [];
   }
 
