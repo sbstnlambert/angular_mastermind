@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mastermind-page',
@@ -8,14 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MastermindPageComponent implements OnInit {
 
   boardgame: { color: string, hint: string }[][] = [];
-  boardUnitNumber: number = 1;
+  boardUnitNumber: number = 5;
   rowIndex: number = 0;
   currentSuggestion!: { color: string, hint: string }[];
   win: boolean | undefined = undefined;
+  tryAgainToInput: boolean = false;
 
-  constructor() { }
+  constructor(private cdref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.start();
+  }
+
+  start() {
     for (let i = 0; i < this.boardUnitNumber; i++) {
       this.boardgame.push([
         { color: 'rgb(230, 230, 230)', hint: 'white' },
@@ -34,9 +39,11 @@ export class MastermindPageComponent implements OnInit {
 
   // Validate a full-combination row
   onValidate(event: { color: string, hint: string }[]) {
-    if (!this.boardgame[this.rowIndex].map(element => element.color).includes('rgb(230, 230, 230)')) {
-      this.rowIndex++;
+    if (!this.boardgame[this.rowIndex]
+        .map(element => element.color)
+        .includes('rgb(230, 230, 230)')) {
       this.currentSuggestion = event;
+      this.rowIndex++;
     }
     else {
       alert('[ERROR] There\'s still at least a missing peg!');
@@ -50,6 +57,7 @@ export class MastermindPageComponent implements OnInit {
     }
   }
 
+  // Display hint's color codes managed in secret-code child component
   displayHints(event: { color: string, hint: string }[]) {
     let count: number = 0;
     for (let i = 0; i < event.length; i++) {
@@ -60,12 +68,24 @@ export class MastermindPageComponent implements OnInit {
     }
     if (count === 4) {
       this.win = true;
-      alert('Congrats! You win.');
     } else if (this.rowIndex === this.boardUnitNumber) {
       this.win = false;
-      alert('You failed to break the code.');
     }
+    this.cdref.detectChanges();
+  }
 
+  tryAgain() {
+    this.boardgame = [];
+    this.win = undefined;
+    this.rowIndex = 0;
+    this.currentSuggestion = [];
+    this.tryAgainToInput = true;
+    this.start();
+  }
+
+  swapTryAgainValue() {
+    this.tryAgainToInput = false;
+    this.cdref.detectChanges();
   }
 
 }

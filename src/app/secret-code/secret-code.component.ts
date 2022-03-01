@@ -27,11 +27,20 @@ export class SecretCodeComponent implements OnInit, OnChanges {
   @Output('hints')
   emitterHints = new EventEmitter<{ color: string, hint: string }[]>();
 
+  @Input('try-again-to-input')
+  tryAgainToInput!: boolean;
+
+  @Output('regenerate-secret-code')
+  emitterNewSecretCode = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
-    this.secretCodes = [];
+    this.generateSecretCode();
+  }
 
+  generateSecretCode() {
+    this.secretCodes = [];
     for (let i = 0; i < 4; i++) {
       this.secretCodes.push(this.colors[Math.floor(Math.random()*7)]);
     }
@@ -40,11 +49,14 @@ export class SecretCodeComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.currentSuggestion !== undefined) {
       this.checkUserSuggestion();
-      console.log(this.checkedSuggestion);
       this.emitterHints.emit(this.checkedSuggestion);
       this.checkedSuggestion = [];
-    } else {
-      console.log('Ratey');
+    }
+    console.log('try again value before: ' + this.tryAgainToInput);
+    if (this.tryAgainToInput === true) {
+      this.generateSecretCode();
+      this.emitterNewSecretCode.emit();
+      console.log('try again value after: ' + this.tryAgainToInput);
     }
   }
 

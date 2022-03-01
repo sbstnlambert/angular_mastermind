@@ -1,42 +1,62 @@
 <div id="page-container">
-    <div id="board-game-container">
+    <div id="game-result-container">
+        <div id="board-game-container">
 
-        <!-- Generate a number of rows defined in boardUnitNumber -->
-        <div class="board-unit"
-            *ngFor="let row of boardgame; let i = index;">
-
-            <!-- Generate and display row's number -->
-            <span class="board-unit-number">{{ i+1 }}</span>
-
-            <!-- Generate four empty pegs in every row -->
-            <div class="rows-container">
-
-                <div    class="row"
-                        *ngFor="let emptyUnitPeg of row"
-                        [ngStyle]="{ 'background-color': emptyUnitPeg.hint }">
-
-                    <div class="code-peg-item"
-                        [ngStyle]="{ 'background-color': emptyUnitPeg.color }">
-                    </div>
-
-                </div> <!-- End rows -->
-
-            </div> <!-- End rows-container -->
+            <!-- Generate a number of rows defined in boardUnitNumber -->
+            <div class="board-unit"
+                *ngFor="let row of boardgame; let i = index;">
+    
+                <!-- Generate and display row's number -->
+                <span class="board-unit-number">{{ i+1 }}</span>
+    
+                <!-- Generate four empty pegs in every row -->
+                <div class="rows-container">
+    
+                    <div    class="row"
+                            *ngFor="let emptyUnitPeg of row"
+                            [ngStyle]="{ 'background-color': emptyUnitPeg.hint }">
+    
+                        <div class="code-peg-item"
+                            [ngStyle]="{ 'background-color': emptyUnitPeg.color }">
+                        </div>
+    
+                    </div> <!-- End rows -->
+    
+                </div> <!-- End rows-container -->
+                
+    
+            </div> <!-- End board-unit -->
+    
+        </div> <!-- End board-game-container -->
+    
+        <div id="end-game-message" >
+            <div *ngIf="win === true">
+                <p class="end-game-result"><span class="emoji">🥳</span> Congrats! You succeeded to break the code.</p>
+                <button (click)="tryAgain()">TRY AGAIN</button>
+            </div>
             
+            <div *ngIf="win === false">
+                <p class="end-game-result"><span class="emoji">☹️</span> You failed to break the code.</p>
+                <button (click)="tryAgain()">TRY AGAIN</button>
+            </div>
+            
+        </div>
 
-        </div> <!-- End board-unit -->
+        <secret-code    [current-suggestion]="currentSuggestion"
+                        (hints)="displayHints($event)" 
+                        [try-again-to-input]="tryAgainToInput" 
+                        (regenerate-secret-code)="swapTryAgainValue()"
+                        >
+        </secret-code>
 
-    </div> <!-- End board-game-container -->
+    </div> <!-- End game-result-container -->
 
     <color-palette  (user-choice)="applyUserChoice($event)"
                     (user-suggestion)="onValidate($event)" 
-                    (reset)="onReset()" 
-                    *ngIf="win === undefined"               
+                    (reset)="onReset()"               
                     >
     </color-palette>
 
-    <secret-code    [current-suggestion]="currentSuggestion"
-                    (hints)="displayHints($event)">
-    </secret-code>
+    
     
 </div> <!-- End page-container -->
