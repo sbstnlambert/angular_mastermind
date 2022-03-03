@@ -52,11 +52,9 @@ export class SecretCodeComponent implements OnInit, OnChanges {
       this.emitterHints.emit(this.checkedSuggestion);
       this.checkedSuggestion = [];
     }
-    console.log('try again value before: ' + this.tryAgainToInput);
     if (this.tryAgainToInput === true) {
       this.generateSecretCode();
       this.emitterNewSecretCode.emit();
-      console.log('try again value after: ' + this.tryAgainToInput);
     }
   }
 
